@@ -8,50 +8,50 @@
 
 
 ### 단축키
-f1 , ctrl + shift + p : vscode 명령어 열기
+* f1 , ctrl + shift + p : vscode 명령어 열기
 >여기서 기능 검색해서 쓰기!
 
-ctrl + alt + v : 클립보드에 있는 캡처 이미지 자동 저장 (paste image 확장자)
-ctrl + shift + v : 마크다운 preview창 열기
+* ctrl + alt + v : 클립보드에 있는 캡처 이미지 자동 저장 (paste image 확장자)
+* ctrl + shift + v : 마크다운 preview창 열기
 
-ctrl + 위아래 방향키 : 코드 작성화면 위아래로 움직이기
-ctrl + tap : 에디터 화면 전환
-ctrl + ` : terminal 터미널 열기
-ctrl + shift + m : problem 상태창 열기 
-ctrl + \ : 한창에 에디터 여러개 띄우기
-ctrl + b : 사이드바 열고 닫기
-ctrl + p : 파일 검색
+* ctrl + 위아래 방향키 : 코드 작성화면 위아래로 움직이기
+* ctrl + tap : 에디터 화면 전환
+* ctrl + ` : terminal 터미널 열기
+* ctrl + shift + m : problem 상태창 열기 
+* ctrl + \ : 한창에 에디터 여러개 띄우기
+* ctrl + b : 사이드바 열고 닫기
+* ctrl + p : 파일 검색
 
-ctrl + g : (행숫자) 특정행으로 이동
-ctrl + shift + f : 전체 프로젝트에서 단어 검색
+* ctrl + g : (행숫자) 특정행으로 이동
+* ctrl + shift + f : 전체 프로젝트에서 단어 검색
 
-f2 : 변수명 변경할 때 한번에 모두 변경하기
+* f2 : 변수명 변경할 때 한번에 모두 변경하기
 >변수위에서 f2누르기
 
-ctrl + D : 동일한 단어 검색 및 편집가능
+* ctrl + D : 동일한 단어 검색 및 편집가능
 >ctrl + D 누를 때 마다 근처의 동일한 단어 선택
 >string과 변수 모두 선택되니 주의해서 사용
 
-ctrl + f2 : 동일한 단어에 커서 생성
+* ctrl + f2 : 동일한 단어에 커서 생성
 >string과 변수모두 커서가 생성되니 주의해서 사용
 
-ctrl + ] : 내어쓰기
-ctrl + [ : 들여쓰기
+* ctrl + ] : 내어쓰기
+* ctrl + [ : 들여쓰기
 
-ctrl + / : 주석처리
-ctrl + k + c : 주석처리
+* ctrl + / : 주석처리
+* ctrl + k + c : 주석처리
 
-ctrl + sfift + 방향키 : 그줄의 코드 복사
-ctrl + shift + k : 그줄의 코드를 삭재
-ctrl + alt + 방향키 : 커서를 위아래 줄로도 생성
+* ctrl + sfift + 방향키 : 그줄의 코드 복사
+* ctrl + shift + k : 그줄의 코드를 삭재
+* ctrl + alt + 방향키 : 커서를 위아래 줄로도 생성
 
-ctrl + c : (드래그 없이) 그 줄 복사
-ctrl + v : (드래그 없이) 그 줄 붙여넣기
+* ctrl + c : (드래그 없이) 그 줄 복사
+* ctrl + v : (드래그 없이) 그 줄 붙여넣기
 >특정 줄을 복사할 때는 마우스나 shift로 드래그하지말고 그냥 ctrl c ctrl v 하자
 
-f5 : 디버깅
-ctrl + f5 : 디버깅 없이 실행
-ctrl + shift + f5 : 디버깅 재실행
+* f5 : 디버깅
+* ctrl + f5 : 디버깅 없이 실행
+* ctrl + shift + f5 : 디버깅 재실행
 
 
 ### 확장 플러그인
