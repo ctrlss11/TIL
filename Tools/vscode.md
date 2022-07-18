@@ -63,6 +63,10 @@
   * [코드 행번호 작성](https://bskyvision.com/entry/vscode-%EC%BD%94%EB%93%9C-%EB%B3%B5%EC%82%AC%ED%95%A0-%EB%95%8C-%ED%96%89-%EB%B2%88%ED%98%B8%EB%8F%84-%EA%B0%99%EC%9D%B4-%EB%B3%B5%EC%82%AC%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95?category=834665)
 
 ### 기본 설정
+* font 설정
+  * D2coding, Hack 폰트 다운로드
+  * ctrl + , : 세팅 열기
+  * font family 에서 젤 앞에 적힌 font가 적용
 * theme setting
 * 설정 동기화
 * git 연결
