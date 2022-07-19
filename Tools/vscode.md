@@ -42,7 +42,9 @@
 * ctrl + k + c : 주석처리
 
 * ctrl + sfift + 방향키 : 그줄의 코드 복사
-* ctrl + shift + k : 그줄의 코드를 삭재
+
+* ctrl + del : 그줄의 코드를 삭제
+* ctrl + shift + k : 그줄의 코드를 삭제
 * ctrl + alt + 방향키 : 커서를 위아래 줄로도 생성
 
 * ctrl + c : (드래그 없이) 그 줄 복사

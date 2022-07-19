@@ -13,6 +13,7 @@
 
 ## 분류
 [class](Python_0717.md)
+
 [variable](Python_0718.md)
 
 ## 기타
