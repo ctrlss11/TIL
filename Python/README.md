@@ -27,6 +27,7 @@ dir(list)
 ```
 
 ## 찾기
+### Python
 [class](Python_0717.md)
 
 [control statements](./Python_0720.md)
