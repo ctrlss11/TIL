@@ -11,8 +11,22 @@
 * 여러 다른 개념들의 관계와 차이를 정리하고 구조화하기
 * 배운 개념을 코드로 쓰며 실습하기
 
+## 파이썬 공식 문서
+[공식 문서](https://docs.python.org/3/)
+
 ## 파이썬 라이브러리 뜯어보기
-[라이브러리 내부코드 확인하기!!!](https://github.com/python/cpython/tree/main/Lib)
+[라이브러리 내부코드 확인](https://github.com/python/cpython/tree/main/Lib)
+
+[inspect모듈 활용](https://jimmy-ai.tistory.com/247)
+
+```python
+import inspect
+import random
+
+print(inspect.getsource(random))
+print(inspect.getsource(random))
+```
+
 
 ## 유용한 내장 함수
 * help() : 도움말
@@ -28,15 +42,17 @@ dir(list)
 
 ## 찾기
 ### Python
-[class](Python_0717.md)
+[class](Python_0723.md)
 
-[control statements](./Python_0720.md)
+[control statements](Python_0720_0721.md)
 
-[function](./Python_0720.md)
+[function](Python_0720_0721.md)
 
-[loop](./Python_0720.md)
+[loop](Python_0720_0721.md)
 
-[variable, datatype](Python_0718.md)
+[try, except](Python_0724.md)
+
+[variable, datatype](Python_0718_0719.md)
 
 ## 기타
 [코드 스타일 가이드 PEP8](https://peps.python.org/pep-0008/)
