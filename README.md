@@ -12,15 +12,18 @@
 ### git
 * [git basic 정리](./git/git%20basic.md)
 
+### Python
+* [python](/Python/README.md)
 
 ### Tools
 * [vscode 단축키 및 설정](./Tools/vscode.md)
 * [cli 명령어](./Tools/cli.md)
+* [excalidraw 순서도 그리기 좋은 툴](https://excalidraw.com/)
 
-## 참고developer roadmap
-* TIL 작성에 참고한 곳!
+## 참고
+### TIL 작성에 참고한 곳!
 [ksu3101](https://github.com/ksu3101/TIL)
 [namjunemy](https://github.com/namjunemy/TIL)
  
-* roadmap
+### roadmap
 [developer roadmap](https://github.com/kamranahmedse/developer-roadmap)

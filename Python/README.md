@@ -46,6 +46,8 @@ dir(list)
 
 [control statements](Python_0720_0721.md)
 
+[data structure method](Python_0725_0726.md)
+
 [function](Python_0720_0721.md)
 
 [loop](Python_0720_0721.md)
