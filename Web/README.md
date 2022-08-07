@@ -21,13 +21,13 @@
 
 ## 찾기
 ### Web
-[bootstrp]()
+[bootstrp](./Web_0803_0804.md)
 
 [css](./Web_0801_0802-2.md)
 
-[flexbox]()
+[flexbox](./Web_0803_0804.md)
 
-[gridsystem])()
+[gridsystem](./Web_0803_0804.md)
 
 [html](./Web_0801_0802-1.md)
 
