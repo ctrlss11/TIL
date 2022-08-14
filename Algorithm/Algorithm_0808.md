@@ -99,13 +99,15 @@ def countSort(lst):
     c = [0 for _ in range(len(lst))]
     ret = [0 for _ in range(len(lst))]
     
-    for i in range lst: c[i] += 1
+    for i in range(len(lst)): c[i] += 1
 
     for i in range(1, len(c)): c[i] += c[i-1]
 
     for i in range(len(ret)-1, -1, -1):
         c[lst[i]] -= 1
         ret[c[lst[i]]] = lst[i]
+
+    return ret
 ```
 
 ### 정렬 알고리즘 비교
