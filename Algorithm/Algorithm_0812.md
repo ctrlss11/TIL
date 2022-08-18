@@ -1,5 +1,5 @@
 # Algorithm
-## 0812 string
+## 220812 string
 ### 목표
 * 알고리즘 문제 풀이 방법 익히기
 * string 관련 문제 풀이

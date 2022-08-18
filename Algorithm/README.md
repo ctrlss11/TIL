@@ -10,7 +10,30 @@
 * 알고리즘 내용에 해당하는 문서로 링크
 
 ## 분류
-## Search
+* 2 dimensional array 2차원 배열
+  * 탐색
+  * 델타
+  * 전치
+* binary search 이진 검색
+* bit operator and subset 부분 집합 생성
+* dfs 깊이 우선 탐색
+* dynamic programming 동적 계획법
+  * bottom-up
+  * top-down
+* exaustive search 완전 검색
+* graph 그래프
+* greedy algorithm 그리디 알고리즘
+* pattern searching algorithm 패턴 검색
+  * brute-force
+  * KMP
+  * boyer-moore
+* stack 스택
+* sort 정렬
+  * bubble sort 거품 정렬
+  * counting sort 계수 정렬
+  * selection sort 선택 정렬
+
+
 ### [2 dimensional array](./Algorithm_0808.md)
 * 입력
 ```python
@@ -77,7 +100,7 @@ for i in range(N):
 
 ### [binary search](./Algorithm_0810.md)
 
-### [bit operator n subset](./Algorithm_0810.md)
+### [bit operator and subset](./Algorithm_0810.md)
 * 비트 연산자로 부분 집합 생성
 ```python
 # 비트 연산자로 부분집합 생성
@@ -92,8 +115,96 @@ for i in range(1<<n):           # 0부터 2^n-1 까지
 print()
 ```
 
+### [dfs](./Algorithm_0817.md)
+* stack
+```python
+def dfs(now):
+stack = [now]
+while stack:
+    # 1. 방문 표시
+    visited[now] = 1
+    # 2. 인접 정점 확인
+    for nxt in range(N+1):
+        # 3. 이전에 방문했던 곳인지 확인
+        if graph[now][nxt] == 1 and visited[nxt] == 0:
+            # 4. 안했다면 방문하여 stack에 push
+            stack.append(now)
+            now = nxt
+            result.append(nxt)
+            break
+    # 5. 인접 정점의 방문이 끝나면 stack에서 pop, 이전 최근 정점에서 1. 반복
+    else:
+        now = stack.pop()
+
+visited = [0]*(N+1)
+graph = [[0]*(N+1) for _ in range(N+1)] # graph 정보
+for i in range(E): # 인접 행렬 만들기
+    graph[lst[i*2]][lst[i*2+1]] = 1
+    graph[lst[i*2+1]][lst[i*2]] = 1 # 양방향일 경우
+
+start = 1
+result = [start]
+dfs(start)
+print(*result)
+```
+* recursion
+```python
+def dfs(now):
+    visited[now] = 1
+    result.append(now)
+    for nxt in range(N+1):
+        if graph[now][nxt] == 1 and visited[nxt] == 0:
+            dfs(nxt)
+
+visited = [0] * (N+1)
+graph = [[0] * (N+1) for _ in range(N+1)]
+for i in range(E):
+    graph[lst[i*2]][lst[i*2+1]] = 1
+    graph[lst[i*2+1]][lst[i*2]] = 1 
+
+result = []
+start = 1
+dfs(start)
+print(*result)
+```
+
+### [dynamic programming](./Algorithm_0817.md)
+* bottom-up tabulation
+```python
+# bottom-up tabulation
+d = [0]*101
+
+d[1] = 1
+d[2] = 1
+
+n = 100
+for i in range(3, n+1):
+    d[i] = d[i-1] + d[i-2]
+
+print(d[n])
+```
+* top-down memoization
+```python
+# top-down memoization
+d = [0]*101
+
+def fibo(a):
+    if a == 1 or a == 2:
+        return 1
+
+    if d[a] != 0:
+        return d[a]
+
+    d[a] = fibo(a-1) + fibo(a-2)
+    return d[a]
+
+print(fibo(100))
+```
+
 ### [exaustive search](./Algorithm_0808.md) 
 * 완전 검색
+
+### [graph](./Algorithm_0817.md)
 
 ### [greedy algorithm](./Algorithm_0808.md)
 * 탐욕 알고리즘
@@ -125,6 +236,9 @@ def bf(p, t):
 ```python
 # 최적화 후 추가
 ```
+
+### [stack](./Algorithm_0817.md)
+
 ### [sort](./Algorithm_0808.md)
 * bubble sort
 ```python
