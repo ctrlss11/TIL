@@ -14,6 +14,7 @@
   * 탐색
   * 델타
   * 전치
+* back tracking 백트래킹
 * binary search 이진 검색
 * bit operator and subset 부분 집합 생성
 * dfs 깊이 우선 탐색
@@ -89,7 +90,7 @@ for di, dj in move:
 ```python
 # arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 # zip, * 사용
-arr_T = list(zip(*arr))
+arr_T = [list(x) for x in zip(*arr)]
 
 # for문
 for i in range(N):
@@ -97,6 +98,8 @@ for i in range(N):
         if i < j:
             arr[i][j], arr[j][i] = arr[j][i], arr[i][j]
 ```
+
+### [back tracking](Algorithm_0822.md)
 
 ### [binary search](./Algorithm_0810.md)
 
