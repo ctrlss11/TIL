@@ -1,5 +1,5 @@
 # Algorithm
-## 220822 stack, 백트래킹, 부분집합, 순열, 분할 정복
+## 220822 220823 stack, 백트래킹, 부분집합, 순열, 분할 정복
 ### 목표
 * 알고리즘 문제 풀이 방법 익히기
 * back tracking 문제 풀이 방법 익히기
@@ -85,7 +85,7 @@ for i in range(2):              # idx 0
                 bit[3] = l
                 print(bit)
 ```
->back tracking으로 구현
+>부분 집합 템플릿 1 , back tracking으로 구현
 ```python
 # 후보군의 경우의 수를 탐색하여, 해를 찾기
 def backTracking(a, k ,input):
@@ -116,6 +116,32 @@ nmax = 4
 a = [0]*nmax
 backTracking(a, 0, 3)
 ```
+>부분 집합 템플릿 2
+```python
+def powerset(idx):                  # 몇 번째 idx가 선택o / 선택x
+    if idx < len(lst):              # 사용되는 숫자를 정할 수 있음
+        selected[idx] = True
+        powerset(idx+1)
+        selected[idx] = False
+        powerset(idx+1)
+    else:
+        # 부분 집합을 생성
+        res = []
+        for i in range(len(lst)):
+            if selected[i]:
+                res.append(lst[i])
+        # print(res)
+        result.append(res)
+
+lst = list(range(1, 6))
+selected = [False]*len(lst)
+result = []
+
+powerset(0)
+print(result)
+print(len(result))
+```
+
 
 #### 예제
 * {1, 2, 3, 4, 5, 6, 7, 8, 9, 10} 에서 합이 10인 부분집합 출력
@@ -145,9 +171,47 @@ result = 0
 subsetSum(0, 10, 0, 10)
 print(result)
 ```
-(2) 완전 검색
+
+(2) (1)보완하기
+* 가지치기로 확인하는 node수는 줄어들지만,
+* 찾으려는 부분 집합의 합이 큰 수라면 효과가 떨어짐
+* 남은 원소의 합을 추가로 고려하기!
+  * 남은 원소의 합을 다 더해도 찾으려는 값보다 작을 경우 중단
+  * S + RS(rest_sum 남은 구간의 합) < T
+>(2) 보완, 중단 조건 추가
+```python
+def subsetSum(i, N, s, t):
+    global result, cnt
+    cnt += 1
+    rest_sum = sum(A[i:])
+    if i == N:                              # 모든 원소를 확인
+        if s == t:                          # 부분집합의 합이 t이면
+            result += 1
+        return
+    elif s > t:
+        return
+    elif s + rest_sum < t:
+        return
+    else:
+        subsetSum(i+1, N, s+A[i], t)        # A[i]가 포함된 경우 
+        subsetSum(i+1, N, s, t)             # A[i]가 포함되지 않은 경우
+
+A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+bit = [0]*len(A)
+result = 0
+cnt = 0
+subsetSum(0, 10, 0, 30)
+print(result, cnt)
+```
+* 합이 30을 구하는 경우
+* ![호출 횟수 비교](./img/2022-08-23-22-13-25.png)
+* 1) 모든 경로 탐색 : 2047
+* 2) s > t 조건 추가 : 1843
+* 3) s + RS < t 까지 추가 : 1381
+
+(3) 완전 검색
   * 혹은 모든 부분 집합 생성 후, 합이 10인 경우만 출력
->(2) 완전 검색
+>(3) 완전 검색
 ```python
 def subsetSum(i, N):
     global result
@@ -221,4 +285,35 @@ nmax = 4
 a = [0]*nmax
 backTracking(a, 0, 3)
 ```
+* 추가 내용
+>pseudo code
+```python
+f(i, N)
+    if i == N               # 순열 완성
 
+    else
+        for j: i -> N-1     # 가능한 모든 원소에 대해
+            P[i] <-> P[j]   # P[i] 결정
+            f(i+1, N)
+            P[i] <-> P[j]   # P[i] 복구
+```
+>순열 생성 템플릿
+```python
+def nPr(i, N):
+    if i == N:                      # 순열 완성 
+        result.append(P)
+        print(P)
+    else:
+        for j in range(i, N):       # P[i]에 들어갈 P[j] 결정
+            P[i], P[j] = P[j], P[i]
+            nPr(i+1, N)
+            P[i], P[j] = P[j], P[i]
+
+result = []
+P = [1, 2, 3, 4]
+nPr(0, 4)
+```
+* 순서대로
+* [1, 2, 3], [2, 1, 3], [3, 2, 1]
+* [1, 3, 2]
+* 순열을 생성한 이후, 각 경우별로 cost를 계산할 때 사용!

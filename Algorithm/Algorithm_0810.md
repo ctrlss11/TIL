@@ -56,8 +56,8 @@ dj = [-1, 1, 0, 0]
 for i in range(N):
     for j in range(M):
         for k in range(4):
-            ni = i + di
-            nj = j + dj
+            ni = i + di[k]
+            nj = j + dj[k]
             if 0 <= N and 0 <= nj < N:
                 arr[ni][nj] ...
             
@@ -74,8 +74,8 @@ for i in range(N):
         for A in range(1, 3): # 1칸 순회 후, 2칸 순회
             for k in range(4):
                 # for A in range(1, 3): 2칸씩 먼저 하려면 아래에 추가
-                ni = i + di * A
-                nj = j + dj * A
+                ni = i + di[k] * A
+                nj = j + dj[k] * A
                 if 0 <= N and 0 <= nj < N:
                     arr[ni][nj] ...
 ```
@@ -86,7 +86,7 @@ for i in range(N):
 arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 # zip 활용
-arr1 = list(zip(*arr))
+arr_T = [list(x) for x in zip(*arr)]
 
 # for문
 for i in range(N):

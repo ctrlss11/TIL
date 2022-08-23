@@ -16,7 +16,6 @@
   * 전치
 * back tracking 백트래킹
 * binary search 이진 검색
-* bit operator and subset 부분 집합 생성
 * dfs 깊이 우선 탐색
 * dynamic programming 동적 계획법
   * bottom-up
@@ -28,12 +27,16 @@
   * brute-force
   * KMP
   * boyer-moore
-* stack 스택
+* permutation 순열
 * sort 정렬
   * bubble sort 거품 정렬
   * counting sort 계수 정렬
   * selection sort 선택 정렬
-
+* stack 스택
+* subset 부분 집합 생성
+  * back tracking
+  * bit operator
+  * for문
 
 ### [2 dimensional array](./Algorithm_0808.md)
 * 입력
@@ -74,8 +77,8 @@ dj = [-1, 1, 0, 0]
 for i in range(N):
     for j in range(M):
         for k in range(4):
-            ni = i + di
-            nj = j + dj
+            ni = i + di[k]
+            nj = j + dj[k]
             if 0 <= N and 0 <= nj < N:
                 arr[ni][nj] ...
             
@@ -102,21 +105,6 @@ for i in range(N):
 ### [back tracking](Algorithm_0822.md)
 
 ### [binary search](./Algorithm_0810.md)
-
-### [bit operator and subset](./Algorithm_0810.md)
-* 비트 연산자로 부분 집합 생성
-```python
-# 비트 연산자로 부분집합 생성
-arr = [3, 6, 7, 1, 5, 4]
-n = len(arr)
-
-for i in range(1<<n):           # 0부터 2^n-1 까지
-    for j in range(n):          # j번 비트
-        if i & (1<<j):          # i의 j번 비트가 1이면 
-            print(arr[j], end='')
-    print()
-print()
-```
 
 ### [dfs](./Algorithm_0817.md)
 * stack
@@ -163,7 +151,7 @@ visited = [0] * (N+1)
 graph = [[0] * (N+1) for _ in range(N+1)]
 for i in range(E):
     graph[lst[i*2]][lst[i*2+1]] = 1
-    graph[lst[i*2+1]][lst[i*2]] = 1 
+    graph[lst[i*2+1]][lst[i*2]] = 1  # 양방향
 
 result = []
 start = 1
@@ -240,32 +228,34 @@ def bf(p, t):
 # 최적화 후 추가
 ```
 
-### [stack](./Algorithm_0817.md)
+### permutation 순열
+```python
+```
 
 ### [sort](./Algorithm_0808.md)
 * bubble sort
 ```python
 def bubbleSort(lst):
     for i in range(len(lst)-1, 0, -1):
-        for j in range(0, i):
+        for j in range(i):
             if lst[j] > lst[j+1]:
                 lst[j], lst[j+1] = lst[j+1], lst[j]
     return lst
 ```
 * counting sort
 ```python
-def countSort(lst):
-    c = [0 for _ in range(len(lst))]
-    ret = [0 for _ in range(len(lst))]
-    
-    # lst원소를 count하는 배열 작성
-    for i in range(len(lst)): c[i] += 1
+def countingSort(lst):
+    n = len(lst)
+    c = [0]*(n+1)
+    ret = [0]*(n)
 
-    # 누적 합으로 수정
-    for i in range(1, len(c)): c[i] += c[i-1]
+    for i in range(len(lst)):      # lst원소를 count하는 배열 작성
+        c[lst[i]] += 1
 
-    # lst를 뒤에서부터 탐색하여, --후 ret에 추가
-    for i in range(len(ret)-1, -1, -1):
+    for i in range(1, len(c)):     # 누적 합으로 수정
+        c[i] += c[i-1]
+
+    for i in range(n-1, -1, -1):    # lst를 뒤에서부터 탐색하여, --후 ret에 추가
         c[lst[i]] -= 1
         ret[c[lst[i]]] = lst[i]
 
@@ -283,3 +273,63 @@ def selectionSort(lst):
 
     return lst
 ```
+
+### [subset]
+* [back tracking](./Algorithm_0822.md) 백트래킹
+```python
+
+```
+```python
+def powerset(idx):                  # 몇 번째 idx가 선택o / 선택x
+    if idx < len(lst):              # 사용되는 숫자를 정할 수 있음
+        selected[idx] = True
+        powerset(idx+1)
+        selected[idx] = False
+        powerset(idx+1)
+    else:
+        # 부분 집합을 생성
+        res = []
+        for i in range(len(lst)):
+            if selected[i]:
+                res.append(lst[i])
+        # print(res)
+        result.append(res)
+
+lst = list(range(1, 6))
+selected = [False]*len(lst)
+result = []
+
+powerset(0)
+print(result)
+print(len(result))
+```
+
+* [bit operator](./Algorithm_0810.md) 비트 연산자로 부분 집합 생성
+```python
+# 비트 연산자로 부분집합 생성
+arr = [3, 6, 7, 1, 5, 4]
+n = len(arr)
+
+for i in range(1<<n):           # 0부터 2^n-1 까지
+    for j in range(n):          # j번 비트
+        if i & (1<<j):          # i의 j번 비트가 1이면 
+            print(arr[j], end='')
+    print()
+print()
+```
+
+* for문
+```python
+bit = [0, 0, 0, 0]
+for i in range(2):              # idx 0
+    bit[0] = i
+    for j in range(2):          # idx 1
+        bit[1] = j
+        for k in range(2):      # idx 2
+            bit[2] = k
+            for l in range(2):  # idx 3
+                bit[3] = l
+                print(bit)
+```
+
+### [stack](./Algorithm_0817.md)

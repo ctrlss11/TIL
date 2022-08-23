@@ -44,7 +44,7 @@ def pop():
     global top
     if top == -1: print('underflow')
     else:
-        top = -1
+        top += -1
         return stack[top+1]
 
 size = 10
@@ -67,7 +67,7 @@ class Stack:
     def pop(self):
         if self.top == -1: return -1 # underflow
         else: 
-            self.top -= 1
+            self.top += -1
             return self.stack[self.top+1]
 
     def isEmpty(self):

@@ -84,7 +84,7 @@ print(max_idx, max_val)
 ```python
 def bubbleSort(lst):
     for i in range(len(lst)-1, 0, -1):
-        for j in range(0, i):
+        for j in range(i):
             if lst[j] > lst[j+1]:
                 lst[j], lst[j+1] = lst[j+1], lst[j]
     return lst
@@ -95,15 +95,18 @@ def bubbleSort(lst):
 * O(n + k) 
 * 구현
 ```python
-def countSort(lst):
-    c = [0 for _ in range(len(lst))]
-    ret = [0 for _ in range(len(lst))]
-    
-    for i in range(len(lst)): c[i] += 1
+def countingSort(lst):
+    n = len(lst)
+    c = [0]*(n+1)
+    ret = [0]*(n)
 
-    for i in range(1, len(c)): c[i] += c[i-1]
+    for i in range(len(lst)):      # lst원소를 count하는 배열 작성
+        c[lst[i]] += 1
 
-    for i in range(len(ret)-1, -1, -1):
+    for i in range(1, len(c)):     # 누적 합으로 수정
+        c[i] += c[i-1]
+
+    for i in range(n-1, -1, -1):    # lst를 뒤에서부터 탐색하여, --후 ret에 추가
         c[lst[i]] -= 1
         ret[c[lst[i]]] = lst[i]
 
