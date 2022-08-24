@@ -98,7 +98,7 @@ def bubbleSort(lst):
 def countingSort(lst):
     n = len(lst)
     c = [0]*(n+1)
-    ret = [0]*(n)
+    ret = [0]*n
 
     for i in range(len(lst)):      # lst원소를 count하는 배열 작성
         c[lst[i]] += 1
