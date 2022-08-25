@@ -36,6 +36,7 @@
 * subset 부분 집합 생성
   * back tracking
   * bit operator
+  * combinations
   * for문
 
 ### [2 dimensional array](./Algorithm_0808.md)
@@ -221,15 +222,49 @@ def bf(p, t):
 ```
 * KMP
 ```python
-# 최적화 후 추가
 ```
 * Boyer-Moore
 ```python
-# 최적화 후 추가
 ```
 
 ### permutation 순열
+* [recursion](./Algorithm_0822.md) recursion 재귀 사용
 ```python
+def nPr(i, N):
+    if i == N:                      # 순열 완성 
+        result.append(P)
+        print(P)
+    else:
+        for j in range(i, N):       # P[i]에 들어갈 P[j] 결정
+            P[i], P[j] = P[j], P[i]
+            nPr(i+1, N)
+            P[i], P[j] = P[j], P[i]
+
+result = []
+P = [1, 2, 3, 4]
+nPr(0, 4)
+```
+* [permutations](./Algorithm_0822.md) permutations 순열 사용
+```python
+from itertools import permutations
+
+r = 2
+arr = [1, 2, 3, 4]
+nPr = list(permutations(arr, r))
+
+print(nPr)
+```
+* for문
+```python
+arr = [1, 2, 3]
+subsets = [[]]
+
+for num in arr:
+    size = len(subsets)
+    for i in range(size):
+        subsets.append(subsets[i] + [num])
+        
+print(subsets)
 ```
 
 ### [sort](./Algorithm_0808.md)
@@ -306,7 +341,7 @@ print(len(result))
 
 * [bit operator](./Algorithm_0810.md) 비트 연산자로 부분 집합 생성
 ```python
-# 비트 연산자로 부분집합 생성
+# 비트 연산자로 부분 집합 생성
 arr = [3, 6, 7, 1, 5, 4]
 n = len(arr)
 
@@ -316,6 +351,18 @@ for i in range(1<<n):           # 0부터 2^n-1 까지
             print(arr[j], end='')
     print()
 print()
+```
+
+* [combinations](./Algorithm_0822.md) combinations 조합으로 부분 집합 생성
+```python
+from itertools import combinations 
+
+arr = [1, 2, 3]
+result = []
+for i in range(len(arr)+1):
+  result += list(combinations(arr, i))
+
+print(result)
 ```
 
 * for문

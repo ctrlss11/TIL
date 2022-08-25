@@ -72,7 +72,7 @@ def checkNode(v):
 * 어떤 집합의 공집합과 자기자신을 포함한 모든 부분집합
 * 부분집합의 개수는 2^n
 * True, False로 구성된 n개의 배열로 구현
->반복문으로 구현
+>반복문으로 구현(1)
 ```python
 bit = [0, 0, 0, 0]
 for i in range(2):              # idx 0
@@ -141,7 +141,17 @@ powerset(0)
 print(result)
 print(len(result))
 ```
+>combinations 사용
+```python
+from itertools import combinations 
 
+arr = [1, 2, 3]
+result = []
+for i in range(len(arr)+1):
+  result += list(combinations(arr, i))  
+
+print(result)
+```
 
 #### 예제
 * {1, 2, 3, 4, 5, 6, 7, 8, 9, 10} 에서 합이 10인 부분집합 출력
@@ -312,6 +322,28 @@ def nPr(i, N):
 result = []
 P = [1, 2, 3, 4]
 nPr(0, 4)
+```
+>permutation 사용
+```python
+from itertools import permutations
+
+r = 2
+arr = [1, 2, 3, 4]
+nPr = list(permutations(arr, r))
+
+print(nPr)
+```
+>반복문으로 구현
+```python
+arr = [1, 2, 3]
+subsets = [[]]
+
+for num in arr:
+    size = len(subsets)
+    for i in range(size):
+        subsets.append(subsets[i] + [num])
+        
+print(subsets)
 ```
 * 순서대로
 * [1, 2, 3], [2, 1, 3], [3, 2, 1]

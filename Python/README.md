@@ -40,6 +40,10 @@ dir()
 dir(list)          
 ```
 
+## 내장 함수 시간 복잡도 확인
+* https://wiki.python.org/moin/TimeComplexity
+* https://www.ics.uci.edu/~pattis/ICS-33/lectures/complexitypython.txt
+
 ## 찾기
 ### Python
 [class](Python_0723.md)
