@@ -172,7 +172,7 @@ def subsetSum(i, N, s, t):
         return
     else:
         subsetSum(i+1, N, s+A[i], t)        # A[i]가 포함된 경우 
-        subsetSum(i+1, N, s+A[i], t)        # A[i]가 포함되지 않은 경우
+        subsetSum(i+1, N, s, t)        # A[i]가 포함되지 않은 경우
 
 A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 bit = [0]*len(A)
