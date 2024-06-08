@@ -702,3 +702,241 @@ public static void main (String[] args) {
 }
 ```
 
+### Try With Resources
+* 리소스 관리를 편하게 하는 방법
+* 할당시킨 자원을 자동으로 해제함
+```java
+try (자원할당) {
+    명령문
+} catch (변수) {
+    예외처리
+}
+```
+```java
+public static void main (String[] args) {
+    try (FileWriter writer = new FileWriter("file.txt")) {
+        writer.write("쓰기");
+    } catch (Exception e) {
+        System.out.println("에러 발생");
+    }
+}
+```
+
+### 사용자 정의 예외
+* 개발자가 직접 정의한 예외
+* 특정 상황에서 예외를 발생시키고 싶을 때
+```java
+class MyException extends Exception {
+    public MyException (String message) {
+        super(message);
+    }
+}
+```
+
+### 예외처리 미루고
+* 문제가 발생했을 때, 메소드를 호출한 곳에서 예외처리
+* 반환형 메소드명() throws 예외 { 명령문 }
+```java
+public static int divide (int a, int b) throws Exception {
+    return a / b;
+}
+
+public static void main (String[] args) {
+    try {
+        divide(3, 0);           // throws를 통해 예외발생 후
+    } catch (Exception e) {     // catch에서 예외 처리
+        System.out.println("0으로 나눌 수 없습니다.")
+    }
+}
+```
+
+### Thread
+* 여러 작업을 동시에 하기위해서 사용
+```java
+class 클래스명 extends Thread {
+    public void run() {
+
+    }
+}
+```
+```java
+class MyThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Thread : " + i);
+        }
+    }
+}
+
+public static void main (String[] args) {
+    MyThread thread = new MyThread();
+    thread.start();     // 새로운 쓰레드를 만들어서 run() 동작 수행
+}
+```
+
+### Runnable
+* 여러 작업을 동시에 하기위해서 사용
+```java
+class 클래스명 implements Runnable {
+    public void run() {
+        
+    }
+}
+```
+```java
+// thread로 구현하면 java에서 다중상속이 불가능하지만,
+// interface로 구현하면 다른 클래스를 상속할 수 있다는 장점이 있음
+class MyRunnable implements Runnable {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Runnable : " + i);
+        }
+    }
+}
+
+public static void main (String[] args) {
+    MyRunnable runnable = new MyRunnable();
+    Thread thread = new Thread(runnable);
+    thread.start();
+}
+```
+
+### Join
+* 쓰레드 실행을 마칠 때까지 대기
+```java
+public static void main (String[] args) throws InterruptedException {
+
+    thread.start();
+    thread.join();          // 앞의 thread 실행을 마칠 때까지 대기 후,
+    method();               // 뒤의 method 실행
+
+}
+```
+
+### 다중 쓰레드
+* 여러 쓰레드를 동시에 수행
+```java
+public static void main (String[] args) {
+    Thread thread1 = new Thread(() -> {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Thread1 : " + i);
+        }
+    });
+
+    Thread thread2 = new Thread(() -> {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Thread2 : " + i);
+        }
+    });
+
+
+    thread1.start();
+    thread2.start();
+
+}
+```
+
+### 동기화
+* 여러 쓰레드가 공유된 자원에 동시에 접근하지 못하게 막는 것
+```java
+synchronized 메소드명 () {
+
+}
+
+synchronized (변수) {
+
+}
+```
+```java
+class SharedData {
+    public int data = 0;
+
+    // 각각의 쓰레드가 동시에 사용 불가
+    synchronized public void increment() {  
+        data++;
+    }
+}
+
+public static void main (String[] args) throws InterruptedException {
+    SharedData sharedData = new SharedData();
+    Thread thread1 = new Thread(() -> {
+        for (int i = 0; i < 1000; i++) {
+            sharedData.increment();
+        }
+    });
+
+    Thread thread2 = new Thread(() -> {
+        for (int i = 0; i < 1000; i++) {
+            sharedData.increment();
+        }
+    });
+
+    thread1.start();
+    thread2.start();
+
+    thread1.join();
+    thread2.join();
+
+    System.out.println("SharedData : " + sharedData.data);    
+
+
+    // 출력 결과
+    // 2000
+
+}
+```
+
+### 입력
+* 프로그램에 데이터 입력 받기
+```java
+Scanner sc = new Scanner(System.in);
+
+String word = sc.next();            // 문자열을 단어 단위로 입력 받기
+int i = sc.nextInt();               // 정수 입력 받기
+double d = sc.nextDouble();         // 실수 입력 받기
+String line = sc.nextLine();        // 문장을 줄 단위로 입력 받기
+```
+
+### 출력
+* 프로그램에서 결과 출력
+* printf
+  * %d : 정수
+  * %f : 실수
+  * %s : 문자열
+  * %n : 줄바꿈
+  * \- : 왼쪽 정렬
+  * \+ : 부호 표시 (양수, 음수)
+  * 0 : 빈공간 0으로 채우기
+  * , : 세자리마다 콤마로 구분
+  * . : 소수점 자리수
+    * ("%.2f", 1.234) 이면 1.23 으로 출력
+```java
+System.out.print();
+System.out.println();
+System.out.printf();
+
+String name = "A";
+int age = 10;
+
+System.out.printf("이름 : %s, 나이 : %d", name, age);
+```
+
+### 파일, 폴더
+```java
+file.createNewFile();               // 새 파일 생성
+if (file.exists()) {}               // 파일 또는 폴더 존재 여부
+file.getName();                     // 이름 정보
+file.getAbsolutePath();             // 절대 경로 정보
+file.length();                      // 파일 크기 (Byte)
+
+file.mkdir();                       // 폴더 생성
+file.mkdires();                     // 폴더들 생성
+for (File file : file.listFiles())  // 파일 및 폴더 목록 조회
+if(file.isFile())                   // 파일인지 여부
+if(file.isDirectory())              // 폴더인지 여부
+file.delete();                      // 파일 또는 폴더 삭제
+```
+
+### 파일 읽고 쓰기
+* BufferedWriter
+* BufferedReader
